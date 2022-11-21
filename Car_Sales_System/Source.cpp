@@ -186,7 +186,7 @@ void Admin_main_program() {
 		cout << "Please Enter 1 to Add Car" << endl;
 		cout << "Please Enter 2 to Display All Cars" << endl;
 		cout << "Please Enter 3 to Display All Cars" << endl;
-		cout << "Please Enter 4 to Edit Book" << endl;
+		cout << "Please Enter 4 to Update Car" << endl;
 		//cout << "Please Enter 5 to Exit" << endl;
 
 		cin >> choise;
@@ -263,6 +263,16 @@ void Admin_main_program() {
 		case 3:
 			Display_Car();
 			break;
+		case 4: {
+			
+			car New_car;
+			New_car.edit_car();
+			cout << "--> Record is Update to file \n";
+
+		
+			break;
+		}
+			
 
 		}
 

@@ -29,9 +29,9 @@ void car::Add_car() {
 void car::Displat_car() {
 	//vector<string>record;
 	//car car_tmp;
-	ifstream file_read("saved/Cars.txt");
+	ifstream file_read("saved/Cars.txt",ios::in);
 	if (file_read.is_open()) {
-	ifstream file_read;
+//	ifstream file_read;
 		//file_read.open("saved/Cars.txt");
 		string line;
 		
@@ -108,7 +108,109 @@ void car::Displat_car() {
 	}
 
 }
+void car::edit_car() {
+	string Car_id;
+	string Car_maker;
+	//string Model;
+	string Car_yearModel;
+	string Car_information;
+	string Car_price;
+	//double kilometers;
+	string Car_available;
+	string Car_colors;
+	string Car_status;
 
+
+	fstream car;
+	fstream temp;
+	int Car_ID;
+	car.open("saved/Cars.txt", ios::in);
+	temp.open("saved/tmp.txt", ios::out );
+	cout << "Please Enter car ID to Update : ";
+	cin >> Car_ID;
+
+	//car >> Car_id >> Car_maker >> Car_yearModel >> Car_information >> Car_price >>
+	//	Car_available >> Car_colors >> Car_status
+	string line;
+
+	while (getline(car, line)) {
+		vector<string>record;
+
+		//char* char_arr;
+		////string str_obj("GeeksForGeeks");
+		//char_arr = &line[0];
+		////cout << char_arr;
+
+		string temp_line = "";
+
+		for (int i = 0; i < (int)line.size(); i++) {
+			// If cur char is not del, then append it to the cur "word", otherwise
+			  // you have completed the word, print it, and start a new word.
+			if (line[i] != ',') {
+				temp_line += line[i];
+			}
+			else {
+				//cout << temp << " ";
+				record.push_back(temp_line);
+				temp_line = "";
+			}
+		}
+		record.push_back(temp_line);
+
+		//car.getline(Car_id,);
+		if (Car_ID == stoi(record[0])) {
+			int car_id_New;
+			string maker_New;
+			//string Model;
+			int yearModel_New;
+			string information_New;
+			float price_New;
+			//double kilometers;
+			string available_New;
+			string colors_New;
+			//string status;
+			cout << "Please Enter car ID : ";
+			cin >> car_id_New;
+			cout << endl;
+			cout << "Please Enter car Manufacturer : ";
+			cin >> maker_New;
+			cout << endl;
+			cout << "Please Enter Year Model : ";
+			cin >> yearModel_New;
+			cout << endl;
+			cout << "Please Enter Some information : ";
+			cin >> information_New;
+			cout << endl;
+			cout << "Please Enter car price : ";
+			cin >> price_New;
+			cout << endl;
+			cout << "Please Enter car available : ";
+			cin >> available_New;
+			cout << endl;
+			cout << "Please Enter car colors : ";
+			cin >> colors_New;
+			cout << endl;
+
+			temp << car_id_New << "," << maker_New << "," << yearModel_New << "," << information_New << "," << price_New << "," <<
+				available_New << "," << colors_New << "," << "New" << endl;
+			cout << "--> Record is Update to file \n";
+
+		}
+		else
+		{
+			temp << record[0] << "," << record[1] << "," << record[2] << "," << record[3] << "," << record[4] << "," <<
+				record[5] << "," << record[6] << "," << record[7] << endl;
+		}
+
+	}
+	temp.close();
+	car.close();
+	remove("saved/Cars.txt");
+	rename("saved/tmp.txt","saved/Cars.txt");
+
+
+	
+}
 car::~car() {
 
 }
