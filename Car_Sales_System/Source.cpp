@@ -17,7 +17,7 @@ using namespace std;
 void Admin_main_program();
 void Customer_main_program();
 
-
+string Customer;
 
 
 
@@ -56,6 +56,8 @@ int main() {
 		}
 		else if (u1.login( luserid, lpass, "saved/Customer.txt") == 1) {
 			cout << "\n\t\t\Your Login  is succeessfull! \n Thank you! \n";
+			Customer = luserid;
+
 			Customer_main_program();
 			//main();
 			//main_program();
@@ -244,7 +246,8 @@ void Customer_main_program() {
 		}
 		case 2: {
 
-
+			car c;
+			c.Buy_car(Customer);
 			break;
 		}
 		default:

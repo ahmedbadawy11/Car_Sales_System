@@ -398,10 +398,106 @@ void car::search_car() {
 
 	}
 	if (!found) {
-		cout << "\n\t\t\t   Not Found !!!!! " << status << endl;
+		cout << "\n\t\t\t   Not Found !!!!! "  << endl;
 
 	}
 }
+void car::Buy_car(string cus) {
+	double KM;
+
+	fstream invioce;
+	fstream car;
+
+
+	int Car_ID;
+	invioce.open("saved/invioce.txt", ios::out|ios::app);
+	car.open("saved/Cars.txt", ios::in);
+
+
+	cout << "Please Enter car ID That Want to Buy : ";
+	cin >> Car_ID;
+
+
+	string line;
+	bool found = false;
+	bool used = false;
+
+
+	while (getline(car, line)) {
+		vector<string>record;
+
+
+
+		string temp_line = "";
+
+		for (int i = 0; i < (int)line.size(); i++) {
+			// If cur char is not del, then append it to the cur "word", otherwise
+			  // you have completed the word, print it, and start a new word.
+			if (line[i] != ',') {
+				temp_line += line[i];
+			}
+			else {
+				//cout << temp << " ";
+				record.push_back(temp_line);
+				temp_line = "";
+			}
+		}
+		record.push_back(temp_line);
+
+		//car.getline(Car_id,);
+		if (Car_ID == stoi(record[0])) {
+			//cout << "The Car Information is \n" << endl;
+
+			id = stoi(record[0]);
+			//cout << "\t\t\t the id is : " << id << endl;
+			maker = record[1];
+			//cout << "\t\t\t the maker is : " << maker << endl;
+			yearModel = stoi(record[2]);
+		//	cout << "\t\t\t the yearModel is : " << yearModel << endl;
+			information = record[3];
+			//cout << "\t\t\t the information is : " << information << endl;
+			price = stof(record[4]);
+		//	cout << "\t\t\t the price is : " << price << endl;
+			available = record[5];
+		//	cout << "\t\t\t the available is : " << available << endl;
+			colors = record[6];
+		//	cout << "\t\t\t the colors is : " << colors << endl;
+			status = record[7];
+		//	cout << "\t\t\t the status is : " << status << endl;
+			if (record[7] == "Used") {
+				//cout << "\t\t\t the kilometers is : " << record[8] << endl;
+				KM =stod( record[8]);
+				used = true;
+			}
+			found = true;
+			break;
+		}
+
+
+	}
+	if (found) {
+
+		if (used) {
+			invioce << id << "," << maker << "," << yearModel << "," << information << "," << price << "," <<
+				available << "," << colors << "," << "Used" << "," << KM << "," << "Sold BY" << "," << cus << endl;
+		}
+		else {
+			invioce << id << "," << maker << "," << yearModel << "," << information << "," << price << "," <<
+				available << "," << colors << "," << "New" << "," << "Sold BY" << "," << cus << endl;
+		}
+		cout << "\n\t\t\t  Congratulations, you have bought the car  "  << endl;
+
+	}
+	else {
+		cout << "\n\t\t\t   Not Found !!!!! "  << endl;
+
+	}
+	invioce.close();
+	car.close();
+
+
+}
+
 car::~car() {
 
 }

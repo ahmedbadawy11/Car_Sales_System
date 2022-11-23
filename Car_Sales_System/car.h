@@ -36,6 +36,9 @@ public:
 	string get_colors();
 	string get_status();
 
+
+	void Buy_car(string cus);
+
 	
 
 
