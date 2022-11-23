@@ -22,8 +22,22 @@ public:
 	void Delete_car();
 	void edit_car();
 	void search_car();
-
 	void Displat_car();
+
+	void Set_atributes();
+	void Get_atributes();
+
+	int get_id();
+	string get_maker();
+	int get_yearModel();
+	string get_information();
+	float get_price();
+	string get_available();
+	string get_colors();
+	string get_status();
+
+	
+
 
 
 

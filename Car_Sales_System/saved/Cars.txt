@@ -1,1 +1,5 @@
-2002,BM,2008,f,20,yes,red,New
+2003,bm,3006,yyy,20,y,red,New
+2009,mt,30099,oo,30,y,w,New
+20555,BM,2020,ggg,50,y,r,Used,10000
+66666,MG,333,ggg,160,y,y,New
+7896,Nisan,2016,;;;,800,y,b,Used,5000

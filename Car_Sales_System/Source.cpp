@@ -4,19 +4,22 @@
 #include <stdlib.h>
 #include <fstream>
 #include "user.h"
+#include "used_car.h"
 
 
 using namespace std;
 
 
-void Login();
-void Registration();
-void Forget();
+//void Login();
+//void Registration();
+//void Forget();
 
 void Admin_main_program();
+void Customer_main_program();
 
-void Add_Car();
-void Display_Car();
+
+
+
 
 int main() {
 	//_________________________    start Login            -----------------------------------
@@ -28,8 +31,8 @@ int main() {
 	cout << "                                                                         \n" << endl;
 	cout << "\t Please Enter 1 to Login" << endl;
 	cout << "\t Please Enter 2 to Register" << endl;
-	cout << "\t Please Enter 3 if you forget your password" << endl;
-	cout << "\t Please Enter 4 to Exit" << endl;
+	//cout << "\t Please Enter 3 if you forget your password" << endl;
+	cout << "\t Please Enter 3 to Exit" << endl;
 	cout << "\n\t\t Please Enter Your choice : " ;
 	cin >> log;
 	//cout << endl;
@@ -46,15 +49,17 @@ int main() {
 		cout << " \t\t\t password : ";
 		cin >> lpass;
 		if (u1.login( luserid, lpass, "saved/Admin.txt") == 1) {
-			cout << "\n\t\t\Your Login  is succeessfull! \n Thank you! ";
+			cout << "\n\t\t\Your Login  is succeessfull! \n Thank you! \n";
 			//main();
 			Admin_main_program();
 
 		}
 		else if (u1.login( luserid, lpass, "saved/Customer.txt") == 1) {
-			cout << "\n\t\t\Your Login  is succeessfull! \n Thank you! ";
+			cout << "\n\t\t\Your Login  is succeessfull! \n Thank you! \n";
+			Customer_main_program();
 			//main();
 			//main_program();
+
 		}
 		else {
 			cout << "\n\t\t Login Erorr \n\t\t Please check your username and password \n ";
@@ -101,10 +106,10 @@ int main() {
 
 	}
 		//Registration();
-	case 3:
+	/*case 3:
 		Forget();
-		break;
-	case 4:
+		break;*/
+	case 3:
 		cout << "\t\t\t Thank you! \n" << endl;
 		break;
 	default: {
@@ -122,61 +127,7 @@ int main() {
 
 	return 0;
 }
-void Login() {
-	//int count=0;
-	//string luserid, lpass,saved_id,saved_pass;
-	////system("cls");
-	//cout << "\t\t\t Please Enter the username and password : \n";
-	//cout << " \t\t\t usernam : ";
-	//cin >> luserid;
-	//cout << " \t\t\t password : ";
-	//cin >> lpass;
-	//ifstream log("saved/Admin.txt");
-	//while (log>> saved_id>> saved_pass)
-	//{
-	//	if (saved_id== luserid && saved_pass== lpass) {
-	//		count = 1;
-	//		//system("cls");
 
-	//	}
-	//}
-	//log.close();
-
-
-	//user u1;
-	//
-	//if (u1.login("saved/Admin.txt") == 1) {
-	//	cout <<  "\n\t\t\Your Login  is succeessfull! \n Thank you! ";
-	//	//main();
-	//	main_program();
-
-	//}
-	//else if (u1.login("saved/Customer.txt") == 1) {
-	//	cout << "\n\t\t\Your Login  is succeessfull! \n Thank you! ";
-	//	//main();
-	//	main_program();
-	//}
-	//else {
-	//	cout <<  "\n\t\t Login Erorr \n\t\t Please check your username and password \n ";
-	//	main();
-
-	//}
-
-
-
-}
-void Registration() {
-	
-
-
-	main();
-
-
-
-}
-void Forget() {
-
-}
 void Admin_main_program() {
 	int choise;
 	char Loop = 'y';
@@ -185,8 +136,11 @@ void Admin_main_program() {
 	{
 		cout << "Please Enter 1 to Add Car" << endl;
 		cout << "Please Enter 2 to Display All Cars" << endl;
-		cout << "Please Enter 3 to Display All Cars" << endl;
+		cout << "Please Enter 3 to Delete Car" << endl;
 		cout << "Please Enter 4 to Update Car" << endl;
+		cout << "Please Enter 5 to Search Car" << endl;
+		cout << "\n\t\t Please Enter Your choice : ";
+
 		//cout << "Please Enter 5 to Exit" << endl;
 
 		cin >> choise;
@@ -195,16 +149,7 @@ void Admin_main_program() {
 		{
 
 			int add_choise=0;
-			int car_id;
-			string maker;
-			//string Model;
-			int yearModel;
-			string information;
-			float price;
-			//double kilometers;
-			string available;
-			string colors;
-			//string status;
+			
 
 			cout << "Please Enter 1 to Add New Car" << endl;
 			cout << "Please Enter 2 to Add Used Car" << endl;
@@ -212,34 +157,16 @@ void Admin_main_program() {
 
 			cin >> add_choise;
 			if (add_choise == 1) {
-				cout << "Please Enter car ID : ";
-				cin >> car_id;
-				cout << endl;
-				cout << "Please Enter car Manufacturer : ";
-				cin >> maker;
-				cout << endl;
-				cout << "Please Enter Year Model : ";
-				cin >> yearModel;
-				cout << endl;
-				cout << "Please Enter Some information : ";
-				cin >> information;
-				cout << endl;
-				cout << "Please Enter car price : ";
-				cin >> price;
-				cout << endl;
-				cout << "Please Enter car available : ";
-				cin >> available;
-				cout << endl;
-				cout << "Please Enter car colors : ";
-				cin >> colors;
-				cout << endl;
-				car New_car(car_id, maker, yearModel, information, price, available, colors,"New");
+				//(car_id, maker, yearModel, information, price, available, colors, "New")
+				car New_car;
 				New_car.Add_car();
 				cout << "--> Record is added to file \n";
 
 			}
 			else if (add_choise == 2) {
-
+				used_car car;
+				car.Add_car();
+				cout << "--> Record is added to file \n";
 
 			}
 			else {
@@ -260,18 +187,33 @@ void Admin_main_program() {
 		}
 
 		
-		case 3:
-			Display_Car();
+		case 3: {
+			car New_car;
+			New_car.Delete_car();
 			break;
+		}
+		
 		case 4: {
 			
 			car New_car;
 			New_car.edit_car();
-			cout << "--> Record is Update to file \n";
+			//cout << "--> Record is Update to file \n";
 
 		
 			break;
 		}
+		case 5: {
+
+			car New_car;
+			New_car.search_car();
+			break;
+		}
+		default: {
+			system("cls");
+			cout << "\t\t\t Please Select from options given abov you! \n\n\n" << endl;
+			Admin_main_program();
+		}
+
 			
 
 		}
@@ -285,23 +227,95 @@ void Admin_main_program() {
 	} while (Loop == 'y' || Loop == 'y');
 
 }
-void Add_Car() {
-	//int id;
-	//string maker;
-	////string Model;
-	//int yearModel;
-	//cout << "\t \t ADD Car" << endl;
-	//cout << "Please Enter Car ID:";
-	//cin >> id;
-	//cout << "Please Enter Car Maker:";
-	//cin >> maker;
-	//cout << "Please Enter Car year Model:";
-	//cin >> yearModel;
+void Customer_main_program() {
+	int choise;
+	char Loop = 'y';
+	do {
+		cout << "Please Enter 1 to Display All Cars" << endl;
+		cout << "Please Enter 2 to Buy Car" << endl;
+		cout << "\n\t\t Please Enter Your choice : ";
+		cin >> choise;
+		switch (choise) {
+		case 1: {
 
-	//car c1(id, maker, yearModel);
-	//c1.SaveCar_to_File(id, maker, yearModel);
+			car c;
+			c.Displat_car();
+			break;
+		}
+		case 2: {
+
+
+			break;
+		}
+		default:
+			system("cls");
+			cout << "\t\t\t Please Select from options given abov you! \n\n\n" << endl;
+			Customer_main_program();
+
+		}
+
+
+		cout << "Please Enter Y to Con \t (Y/N)" << endl;
+		cin >> Loop;
+	} while (Loop == 'y' || Loop == 'y');
+
 }
-void Display_Car() {
 
 
-}
+
+//void Login() {
+//	//int count=0;
+//	//string luserid, lpass,saved_id,saved_pass;
+//	////system("cls");
+//	//cout << "\t\t\t Please Enter the username and password : \n";
+//	//cout << " \t\t\t usernam : ";
+//	//cin >> luserid;
+//	//cout << " \t\t\t password : ";
+//	//cin >> lpass;
+//	//ifstream log("saved/Admin.txt");
+//	//while (log>> saved_id>> saved_pass)
+//	//{
+//	//	if (saved_id== luserid && saved_pass== lpass) {
+//	//		count = 1;
+//	//		//system("cls");
+//
+//	//	}
+//	//}
+//	//log.close();
+//
+//
+//	//user u1;
+//	//
+//	//if (u1.login("saved/Admin.txt") == 1) {
+//	//	cout <<  "\n\t\t\Your Login  is succeessfull! \n Thank you! ";
+//	//	//main();
+//	//	main_program();
+//
+//	//}
+//	//else if (u1.login("saved/Customer.txt") == 1) {
+//	//	cout << "\n\t\t\Your Login  is succeessfull! \n Thank you! ";
+//	//	//main();
+//	//	main_program();
+//	//}
+//	//else {
+//	//	cout <<  "\n\t\t Login Erorr \n\t\t Please check your username and password \n ";
+//	//	main();
+//
+//	//}
+//
+//
+//
+//}
+//void Registration() {
+//	
+//
+//
+//	main();
+//
+//
+//
+//}
+//void Forget() {
+//
+//}
+
